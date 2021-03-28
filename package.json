@@ -2,9 +2,10 @@
   "name": "overlay-api",
   "version": "1.0.0",
   "description": "simple nodejs api for overlay",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app/index.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
