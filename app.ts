@@ -7,8 +7,8 @@ const app: express.Application = express();
 const server: http.Server = http.createServer(app);
 const port = 3000;
 const routes: any = [];
-const tmi = require('tmi.js');
 
+const tmi = require('tmi.js');
 const client = new tmi.Client({
 	options: { debug: true, messagesLogLevel: "info" },
 	connection: {
@@ -22,12 +22,18 @@ const client = new tmi.Client({
 	channels: [ 'beardage' ]
 });
 client.connect().catch(console.error);
-client.on('message', (channel:any, tags:any, message:any, self:any) => {
+client.on('message', onMessageHandler);
+
+function onMessageHandler (target:any, context:any, msg:any, self:any) {
 	if(self) return;
-	if(message.toLowerCase() === '!hello') {
-		client.say(channel, `@${tags.username}, heya!`);
+	// admin only commands
+	if(context.badges.broadcaster == "1") {
+		console.log('broadcaster');
+		if(msg.toLowerCase() === '!test') {
+			client.say(target, `@${context.username}, test functional`);
+		}
 	}
-});
+}
 
 routes.push(new UsersRoutes(app));
 
