@@ -35,7 +35,7 @@ function onMessageHandler (target:any, context:any, msg:any, self:any) {
 	}
 }
 
-routes.push(new UsersRoutes(app));
+routes.push(new TodosRoutes(app));
 
 app.get('/', (req: express.Request, res: express.Response) => {
     res.status(200).send(`Server running at port ${port}`)
