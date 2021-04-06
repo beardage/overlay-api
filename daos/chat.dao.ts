@@ -1,6 +1,7 @@
 export class chatDao {
 	private static instance: chatDao;
-
+	todos: any = [];
+	
 	constructor () {
 		console.log('created new chatDao');
 	}
@@ -36,7 +37,7 @@ export class chatDao {
 	}
 
 	patchTodoById(todo: any) {
-		const objIndex = this.todos.findIndex((obj: [id: any; }) => obj.id === todo.id);	
+		const objIndex = this.todos.findIndex((obj: {id: any; }) => obj.id === todo.id);	
 		let currentTodo = this.todos[objIndex];
 		for (let i in todo) {
 			if (i !== 'id') {
@@ -48,7 +49,7 @@ export class chatDao {
 			currentTodo,
 			...this.todos.slice(objIndex + 1),
 		];
-		return `${user.id} patched`;
+		return `${todo.id} patched`;
 	}
 
 	removeTodoById(todoId: string) {
