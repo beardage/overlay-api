@@ -2,6 +2,8 @@ import {
 	CommonRoutesConfig,
 	configureRoutes,
 } from "../common/common.routes.config";
+import { TodosController } from "./controllers/todos.controller";
+
 import express from "express";
 
 export class TodosRoutes extends CommonRoutesConfig implements configureRoutes {
@@ -11,46 +13,15 @@ export class TodosRoutes extends CommonRoutesConfig implements configureRoutes {
 	}
 
 	configureRoutes() {
-		this.app.get(
-			`/todos`,
-			(req: express.Request, res: express.Response) => {
-				res.status(200).send(`list of todos`);
-			}
-		);
+		const todosController = new TodosController();
+		this.app.get(`/todos`, [todosController.listTodos]);
 
-		this.app.post(
-			`/todos`,
-			(req: express.Request, res: express.Response) => {
-				res.status(200).send(`Post to todos`);
-			}
-		);
+		this.app.post(`/todos`, [todosController.createTodo]);
 
-		this.app.put(
-			`/todos/:todoId`,
-			(req: express.Request, res: express.Response) => {
-				res.status(200).send(`Put to ${req.params.todoId}`);
-			}
-		);
+		this.app.put(`/todos/:todoId`, [todosController.put]);
 
-		this.app.patch(
-			`/todos/:todoId`,
-			(req: express.Request, res: express.Response) => {
-				res.status(200).send(`Patch to ${req.params.todoId}`);
-			}
-		);
+		this.app.patch(`/todos/:todoId`, [todosController.patch]);
 
-		this.app.delete(
-			`/todos/:todoId`,
-			(req: express.Request, res: express.Response) => {
-				res.status(200).send(`Delete to ${req.params.todoId}`);
-			}
-		);
-
-		this.app.get(
-			`/todos/:todoId`,
-			(req: express.Request, res: express.Response) => {
-				res.status(200).send(`Get to ${req.params.todoId}`);
-			}
-		);
+		this.app.delete(`/todos/:todoId`, [todosController.getTodoById]);
 	}
 }

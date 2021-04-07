@@ -7,6 +7,7 @@ export class TodosController {
 	listTodos(req: express.Request, res: express.Response) {
 		const todosService = TodosService.getInstance();
 		const todos = todosService.list(100, 0);
+		console.log("todos" + todos);
 		res.status(200).send(todos);
 	}
 
@@ -20,6 +21,12 @@ export class TodosController {
 		const todosService = TodosService.getInstance();
 		const todoId = todosService.create(req.body);
 		res.status(201).send({ id: todoId });
+	}
+
+	patch(req: express.Request, res: express.Response) {
+		const todosService = TodosService.getInstance();
+		todosService.patchById(req.body);
+		res.status(204).send(``);
 	}
 
 	put(req: express.Request, res: express.Response) {
