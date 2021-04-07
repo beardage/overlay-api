@@ -1,16 +1,16 @@
-export class chatDao {
-	private static instance: chatDao;
+export class ChatDao {
+	private static instance: ChatDao;
 	todos: any = [];
 	
 	constructor () {
-		console.log('created new chatDao');
+		console.log('created new ChatDao');
 	}
 
-	static getInstance(): chatDao {
-		if(!chatDao.instance) {
-			chatDao.instance = new chatDao();
+	static getInstance(): ChatDao {
+		if(!ChatDao.instance) {
+			ChatDao.instance = new ChatDao();
 		}
-		return chatDao.instance;
+		return ChatDao.instance;
 	}
 	
 	addTodo(todo: any) {
