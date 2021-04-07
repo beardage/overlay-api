@@ -25,7 +25,7 @@ export class TodosService implements CRUD {
 	}
 
 	list(limit: number, page: number) {
-		return this.dao.getTodos;
+		return this.dao.getTodos();
 	}
 
 	patchById(resource: any) {

@@ -7,7 +7,6 @@ export class TodosController {
 	listTodos(req: express.Request, res: express.Response) {
 		const todosService = TodosService.getInstance();
 		const todos = todosService.list(100, 0);
-		console.log("todos" + todos);
 		res.status(200).send(todos);
 	}
 
