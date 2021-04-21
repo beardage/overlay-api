@@ -17,6 +17,7 @@ export class TodosController {
 	}
 
 	createTodo(req: express.Request, res: express.Response) {
+		console.log(req.body);
 		const todosService = TodosService.getInstance();
 		const todoId = todosService.create(req.body);
 		res.status(201).send({ id: todoId });
