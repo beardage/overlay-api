@@ -34,15 +34,16 @@ function onMessageHandler(target: any, context: any, msg: any, self: any) {
 	if (self) return;
 	// admin only commands
 	if (context.badges.broadcaster == "1") {
-		console.log("broadcaster");
+		let msgArray = msg.split(" ");
+		console.log(msgArray);
 		if (msg.toLowerCase() === "!test") {
 			client.say(target, `@${context.username}, test functional`);
 		}
-		if (msg.toLowerCase() === "!addtask") {
+		if (msgArray[0].toLowerCase() === "!addtask") {
 			//todo call createTodo somehow with content from command
 			const payload = {
 				id: new Date(),
-				content: "test item 1",
+				content: msgArray[1],
 				status: false,
 				editing: false,
 				subTasks: [],
