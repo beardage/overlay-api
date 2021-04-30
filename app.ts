@@ -34,22 +34,21 @@ function onMessageHandler(target: any, context: any, msg: any, self: any) {
 	if (self) return;
 	// admin only commands
 	if (context.badges.broadcaster == "1") {
-		let msgArray = msg.split(" ");
-		console.log(msgArray);
+		let msgCommand = msg.substring(0, msg.indexOf(" "));
+		let msgContent = msg.substring(msg.indexOf(" ") + 1);
 		if (msg.toLowerCase() === "!test") {
 			client.say(target, `@${context.username}, test functional`);
 		}
-		if (msgArray[0].toLowerCase() === "!addtask") {
-			//todo call createTodo somehow with content from command
+		if (msgCommand === "!addtask") {
 			const payload = {
 				id: new Date(),
-				content: msgArray[1],
+				content: msgContent,
 				status: false,
 				editing: false,
 				subTasks: [],
 			};
 			let res = service.create(payload);
-			client.say(target, `Task Added`);
+			//client.say(target, `Task Added`);
 		}
 	}
 }
