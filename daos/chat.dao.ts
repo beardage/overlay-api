@@ -1,9 +1,17 @@
+const sqlite = require("sqlite3").verbose();
+const db = new sqlite.Database(":memory:");
+
 export class ChatDao {
 	private static instance: ChatDao;
 	todos: any = [];
 
 	constructor() {
-		console.log("created new ChatDao");
+		console.log("initializing sqlite db");
+		db.serialize(function () {
+			db.run(
+				"CREATE TABLE [IF NOT EXISTS] tasks ( id INTEGER PRIMARY KEY,content TEXT NOT NULL, status INTEGER, childOf INTEGER"
+			);
+		});
 	}
 
 	static getInstance(): ChatDao {
@@ -15,6 +23,10 @@ export class ChatDao {
 
 	addTodo(todo: any) {
 		console.log(todo);
+		var stmt = db.prepare(
+			"INSERT INTO tasks VALUES(NULL, todo.content, todo.status, todo.childOf)"
+		);
+		stmt.finalize();
 		return this.todos.push(todo);
 	}
 
