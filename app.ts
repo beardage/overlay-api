@@ -41,14 +41,13 @@ function onMessageHandler(target: any, context: any, msg: any, self: any) {
 		}
 		if (msgCommand === "!addtask") {
 			const payload = {
-				id: new Date(),
+				id: Date.now(),
 				content: msgContent,
 				status: false,
 				editing: false,
 				subTasks: [],
 			};
 			let res = service.create(payload);
-			//client.say(target, `Task Added`);
 		}
 	}
 }
