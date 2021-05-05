@@ -6,7 +6,8 @@
   "scripts": {
     "tsc": "tsc",
     "compile": "tsc && node -r dotenv/config ./dist/app.js",
-    "dev": "nodemon -e ts  --exec \"npm run compile\"",
+    "dev-compile": "nodemon -e ts  --exec \"npm run compile\"", 
+    "dev": "nodemon --watch . --ext ts --exec \"docker-compose build && docker-compose up\"",
     "start": "npm run tsc && nodemon ./dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
