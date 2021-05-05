@@ -7,8 +7,18 @@ services:
       - ./api:/app
     networks:
       - backend
+    links:
+      - mongo
     ports:
       - "3000:3000"
+  mongo:
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    networks:
+      - backend
+    ports: 
+      - "27017:27017"
 
 networks:
   backend:
