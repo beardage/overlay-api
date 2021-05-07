@@ -1,5 +1,6 @@
 import { CRUD } from "../common/interfaces/crud.interface";
 import { ChatDao } from "../daos/chat.dao";
+import { TodosDao } from "../daos/todos.dao";
 
 export class TodosService implements CRUD {
 	private static instance: TodosService;
@@ -17,26 +18,26 @@ export class TodosService implements CRUD {
 	}
 
 	create(resource: any) {
-		return this.dao.addTodo(resource);
+		return TodosDao.getInstance().addTodo(resource);
 	}
 
 	deleteById(resourceId: any) {
-		return this.dao.removeTodoById(resourceId);
+		return TodosDao.getInstance().removeTodoById(resourceId);
 	}
 
 	list(limit: number, page: number) {
-		return this.dao.getTodos();
+		return TodosDao.getInstance().getTodos();
 	}
 
 	patchById(resource: any) {
-		return this.dao.patchTodoById(resource);
+		return TodosDao.getInstance().patchTodoById(resource);
 	}
 
 	readById(resource: any) {
-		return this.dao.getTodoById(resource);
+		return TodosDao.getInstance().getTodoById(resource);
 	}
 
 	updateById(resource: any) {
-		return this.dao.putTodoById(resource);
+		return TodosDao.getInstance().putTodoById(resource);
 	}
 }
