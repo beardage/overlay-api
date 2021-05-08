@@ -12,7 +12,7 @@ export class TodosDao {
 		childOf: String,
 	});
 
-	Todo = this.mongooseService.getMongoose().model("Todo", this.userSchema);
+	Todo = this.mongooseService.getMongoose().model("Todo", this.todoSchema);
 
 	constructor() {}
 

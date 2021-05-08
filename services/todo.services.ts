@@ -26,11 +26,11 @@ export class TodosService implements CRUD {
 	}
 
 	list(limit: number, page: number) {
-		return TodosDao.getInstance().getTodos();
+		return TodosDao.getInstance().listTodos();
 	}
 
 	patchById(resource: any) {
-		return TodosDao.getInstance().patchTodoById(resource);
+		return TodosDao.getInstance().patchTodo(resource);
 	}
 
 	readById(resource: any) {
@@ -38,6 +38,6 @@ export class TodosService implements CRUD {
 	}
 
 	updateById(resource: any) {
-		return TodosDao.getInstance().putTodoById(resource);
+		return TodosDao.getInstance().putById(resource);
 	}
 }
