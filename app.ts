@@ -33,21 +33,22 @@ let service = new TodosService();
 function onMessageHandler(target: any, context: any, msg: any, self: any) {
 	if (self) return;
 	// admin only commands
-	if (context.badges.broadcaster == "1") {
+	if (context.badges?.broadcaster) {
 		let msgCommand = msg.substring(0, msg.indexOf(" "));
 		let msgContent = msg.substring(msg.indexOf(" ") + 1);
 		if (msg.toLowerCase() === "!test") {
 			client.say(target, `@${context.username}, test functional`);
 		}
 		if (msgCommand === "!addtask") {
+			console.log("creating task");
 			const payload = {
-				id: Date.now(),
+				_id: null,
 				content: msgContent,
 				status: false,
-				editing: false,
-				subTasks: [],
+				childOf: false,
 			};
 			let res = service.create(payload);
+			console.log(res);
 		}
 	}
 }
