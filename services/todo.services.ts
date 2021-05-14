@@ -26,7 +26,7 @@ export class TodosService implements CRUD {
 	}
 
 	list(limit: number, page: number) {
-		return TodosDao.getInstance().listTodos();
+		return TodosDao.getInstance().listTodos(limit, page);
 	}
 
 	readById(resource: any) {

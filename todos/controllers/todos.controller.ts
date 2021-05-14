@@ -4,9 +4,9 @@ import { TodosService } from "../../services/todo.services";
 export class TodosController {
 	constructor() {}
 
-	listTodos(req: express.Request, res: express.Response) {
+	async listTodos(req: express.Request, res: express.Response) {
 		const todosService = TodosService.getInstance();
-		const todos = todosService.list(100, 0);
+		const todos = await todosService.list(10, 0);
 		res.status(200).send(todos);
 	}
 
