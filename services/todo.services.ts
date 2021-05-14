@@ -29,15 +29,11 @@ export class TodosService implements CRUD {
 		return TodosDao.getInstance().listTodos();
 	}
 
-	patchById(resource: any) {
-		return TodosDao.getInstance().patchTodo(resource);
-	}
-
 	readById(resource: any) {
 		return TodosDao.getInstance().getTodoById(resource);
 	}
 
 	updateById(resource: any) {
-		return TodosDao.getInstance().putById(resource);
+		return TodosDao.getInstance().patchTodo(resource);
 	}
 }

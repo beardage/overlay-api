@@ -25,7 +25,7 @@ export class TodosController {
 
 	patch(req: express.Request, res: express.Response) {
 		const todosService = TodosService.getInstance();
-		todosService.patchById(req.body);
+		todosService.updateById(req.body);
 		res.status(204).send(``);
 	}
 
