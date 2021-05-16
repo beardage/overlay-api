@@ -10,34 +10,34 @@ export class TodosController {
 		res.status(200).send(todos);
 	}
 
-	getTodoById(req: express.Request, res: express.Response) {
+	async getTodoById(req: express.Request, res: express.Response) {
 		const todosService = TodosService.getInstance();
-		const todo = todosService.readById(req.params.todoId);
+		const todo = await todosService.readById(req.params.todoId);
 		res.status(200).send(todo);
 	}
 
-	createTodo(req: express.Request, res: express.Response) {
+	async createTodo(req: express.Request, res: express.Response) {
 		console.log(req.body);
 		const todosService = TodosService.getInstance();
-		const todoId = todosService.create(req.body);
+		const todoId = await todosService.create(req.body);
 		res.status(201).send({ id: todoId });
 	}
 
-	patch(req: express.Request, res: express.Response) {
+	async patchTodo(req: express.Request, res: express.Response) {
 		const todosService = TodosService.getInstance();
-		todosService.updateById(req.body);
-		res.status(204).send(``);
+		await todosService.updateById(req.body);
+		res.status(204).send(true);
 	}
 
-	put(req: express.Request, res: express.Response) {
+	async putTodo(req: express.Request, res: express.Response) {
 		const todosService = TodosService.getInstance();
-		todosService.updateById(req.body);
-		res.status(204).send(``);
+		await todosService.updateById(req.body);
+		res.status(204).send(true);
 	}
 
-	removeTodo(req: express.Request, res: express.Response) {
+	async removeTodo(req: express.Request, res: express.Response) {
 		const todosService = TodosService.getInstance();
-		todosService.deleteById(req.params.todoId);
-		res.status(204).send(``);
+		await todosService.deleteById(req.params.todoId);
+		res.status(204).send(true);
 	}
 }

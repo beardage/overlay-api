@@ -16,11 +16,13 @@ export class TodosRoutes extends CommonRoutesConfig implements configureRoutes {
 		const todosController = new TodosController();
 		this.app.get(`/todos`, [todosController.listTodos]);
 
+		this.app.get(`/todos/:todoId`, [todosController.getTodoById]);
+
 		this.app.post(`/todos`, [todosController.createTodo]);
 
-		this.app.put(`/todos/:todoId`, [todosController.put]);
+		this.app.put(`/todos/:todoId`, [todosController.putTodo]);
 
-		this.app.patch(`/todos/:todoId`, [todosController.patch]);
+		this.app.patch(`/todos/:todoId`, [todosController.patchTodo]);
 
 		this.app.delete(`/todos/:todoId`, [todosController.getTodoById]);
 	}
