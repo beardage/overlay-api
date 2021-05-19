@@ -50,6 +50,10 @@ function onMessageHandler(target: any, context: any, msg: any, self: any) {
 			let res = service.create(payload);
 			console.log(res);
 		}
+		if (msgCommand === "!removetask") {
+			console.log("removing task");
+			let res = service.deleteByIndex(msgContent);
+		}
 	}
 }
 

@@ -25,6 +25,10 @@ export class TodosService implements CRUD {
 		return TodosDao.getInstance().removeTodoById(resourceId);
 	}
 
+	deleteByIndex(resourceIndex: any) {
+		return TodosDao.getInstance().removeTodoByIndex(resourceIndex);
+	}
+
 	list(limit: number, page: number) {
 		return TodosDao.getInstance().listTodos(limit, page);
 	}

@@ -36,6 +36,13 @@ export class TodosDao {
 		await this.Todo.deleteOne({ _id: todoId });
 	}
 
+	async removeTodoByIndex(todoIndex: number = 0) {
+		let todosArr = await this.listTodos();
+
+		console.log(todosArr);
+		await this.Todo.deleteOne({ _id: todosArr[todoIndex]._id });
+	}
+
 	async getTodoById(todoId: string) {
 		return this.Todo.findOne({ _id: todoId });
 	}
